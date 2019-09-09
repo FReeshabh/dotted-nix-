@@ -6,8 +6,14 @@
 super + Return
 	alacritty
 
+super + w
+	urxvt -e nmtui
+
+super + shift +w
+	firefox
+
 super + d
-	rofi -show drun window
+	rofi -show drun window -font "l 16"
 # program launcher
 super + @space
 	dmenu_run
@@ -29,7 +35,28 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
 	sudo brightnessctl set 10%+
 
-
+XF86AudioMute
+	lmc mute
+XF86AudioLowerVolume
+	lmc down 5
+shift+XF86AudioLowerVolume
+	lmc down 10
+control+XF86AudioLowerVolume
+	lmc down 1
+XF86AudioRaiseVolume
+	lmc up 5
+shift+XF86AudioRaiseVolume
+	lmc up 10
+control+XF86AudioRaiseVolume
+	lmc up 1
+XF86AudioNext
+	lmc next
+XF86AudioPlay
+	lmc toggle
+XF86AudioPrev
+	lmc prev
+XF86AudioStop
+	lmc toggle
 #
 # bspwm hotkeys
 #
@@ -137,3 +164,4 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+

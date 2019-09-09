@@ -1,338 +1,501 @@
+; vim:ft=cfg
+;--------------------------------------------
+; colors                                    ;
+;--------------------------------------------
+
+[colors]
+
+	bar_bg = ${xrdb:color0}
+	bar_fg = ${xrdb:color7}
+
+	border_col = ${xrdb:color0}
+
+	modules_bg = ${xrdb:color7}
+	modules_fg = ${xrdb:color0}
+
+	mod_bg = ${xrdb:color7}
+
+	modules_prefix_bg = ${xrdb:color7}
+	modules_prefix_fg = ${xrdb:color0}
+
+	urgent_bg  = ${xrdb:color1}
+	focused_bg = ${xrdb:color10}
+
+	essid_p_bg   = ${xrdb:color6}
+	down_p_bg    = #5e606c
+	cpu_p_bg     = ${xrdb:color5}
+	ram_p_bg     = ${xrdb:color11}
+	vol_p_bg     = #637b81
+	bright_p_bg  = #c29f6f
+	battery_p_bg = ${xrdb:color9}
+	time_p_bg    = ${xrdb:color10}
+
+;--------------------------------------------
+; bars                                      ;
+;--------------------------------------------
+wm-restack = bspwm
 [bar/top]
-monitor = LVDS-1
-width = 100%
-height = 18
+	dpi      = 190
+	width    = 100%
+	height   = 24
+	offset-x = 0
+	offset-y = 0
 
-background = #cc000000
-foreground = #ccffffff
+	bottom = false
 
-line-color = ${bar/bottom.background}
-line-size = 16
+	background = ${xrdb:color0}
+	foreground = ${xrdb:color7}
 
-spacing = 2
-padding-right = 5
-module-margin = 4
+	border-bottom-size  = 0
+	border-top-size     = 10
 
-font-0 = NotoSans-Regular:size=8;-1
-font-1 = MaterialIcons:size=10;0
-font-2 = Termsynu:size=8:antialias=false;-2
-font-3 = FontAwesome:size=10;0
+	border-left-size  = 80
+	border-right-size = 80
 
-modules-left = powermenu mpd
-modules-right = volume backlight wireless-network wired-network battery date
+	border-bottom-color = #000f0f0f
+	border-top-color    = #000f0f0f
+
+	border-left-color  = #000f0f0f
+	border-right-color = #000f0f0f
+
+	spacing            = 2
+	padding-left       = 0
+	padding-right      = 0
+	module-margin-left = 0
+
+	font-N = <fontconfig pattern>;<vertical offset>
+	font-0 = WnconSiji:size=6;2
+	font-1 = FontAwesome:pixelsize=6;1
+	font-2 = MaterialIcons:size=6;1
+
+	modules-left   = battery volume xwindow
+	;modules-center = workspaces
+	modules-right  = music date wireless-network wired-network
+
+	fixed-center = true
+
+	monitor = LVDS-1
 
 [bar/bottom]
-monitor = LVDS-1
-bottom = true
-width = 100%
-height = 22
+	dpi = 192
+	width = 100%
 
-background = ${bar/top.background}
-foreground = ${bar/top.foreground}
+	bottom = true
 
-line-color = ${bar/top.background}
-line-size = 2
+	background = #000f0f0f
+	foreground = #00000000
 
-spacing = 3
-padding-right = 4
-module-margin-left = 0
-module-margin-right = 6
+	border-left-color  = #000f0f0f
+	border-top-color   = #000f0f0f
 
-font-0 = NotoSans-Regular:size=8;0
-font-1 = unifont:size=6;-3
-font-2 = FontAwesome:size=8;-2
-font-3 = NotoSans-Regular:size=8;-1
-font-4 = MaterialIcons:size=10;-1
-font-5 = NotoSans-Regular:size=8:antialias=false;0
+	border-left-size   = 10
+	border-bottom-size = 10
 
-modules-left = bspwm
-modules-right = cpu memory
+	font-0 = lemon:pixelsize=10;1
 
-[module/backlight]
-type = internal/brightnessctl
-brightnessctl = brightnessctl g
-format = <ramp> <bar>
+	modules-left = mon2
+	modules-right = cpu
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+	monitor = LVDS-1
 
-bar-width = 10
-bar-indicator = |
-bar-indicator-font = 3
-bar-indicator-foreground = #ff
-bar-fill = ─
-bar-fill-font = 3
-bar-fill-foreground = #c9665e
-bar-empty = ─
-bar-empty-font = 3
-bar-empty-foreground = #44
 
-[module/battery]
-type = internal/battery
-full-at = 98
 
-format-charging = <animation-charging> <label-charging>
-format-discharging = <ramp-capacity> <label-discharging>
-format-full = <ramp-capacity> <label-full>
+;--------------------------------------------
+; modules                                   ;
+;--------------------------------------------
 
-ramp-capacity-0 = 
-ramp-capacity-0-foreground = #f53c3c
-ramp-capacity-1 = 
-ramp-capacity-1-foreground = #ffa900
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-
-bar-capacity-width = 10
-bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
-bar-capacity-fill = █
-bar-capacity-fill-foreground = #ddffffff
-bar-capacity-fill-font = 3
-bar-capacity-empty = █
-bar-capacity-empty-font = 3
-bar-capacity-empty-foreground = #44ffffff
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-framerate = 750
-
-[module/bspwm]
-type = internal/bspwm
-
-ws-icon-0 = term;
-ws-icon-1 = web;
-ws-icon-2 = code;
-ws-icon-3 = music;
-ws-icon-4 = irssi;
-ws-icon-default = 
-
-format = <label-state> <label-mode>
-
-label-dimmed-underline = ${BAR.background}
-
-label-active = %icon%
-label-active-foreground = #fff
-label-active-background = #773f3f3f
-label-active-underline = #c9665e
-label-active-font = 4
-label-active-padding = 4
-
-label-occupied = %icon%
-label-occupied-foreground = #dd
-label-occupied-underline = #666
-label-occupied-font = 4
-label-occupied-padding = 4
-
-label-urgent = %icon%
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
-label-urgent-underline = #9b0a20
-label-urgent-font = 4
-label-urgent-padding = 4
-
-label-empty = %icon%
-label-empty-foreground = #55
-label-empty-font = 4
-label-empty-padding = 4
-
-label-monocle = 
-label-monocle-underline = ${module/bspwm.label-active-underline}
-label-monocle-background = #33ffffff
-label-monocle-padding = 2
-
-label-locked = 
-label-locked-foreground = #bd2c40
-label-locked-underline = ${module/bspwm.label-monocle-underline}
-label-locked-padding = ${module/bspwm.label-monocle-padding}
-
-label-sticky = 
-label-sticky-foreground = #fba922
-label-sticky-underline = ${module/bspwm.label-monocle-underline}
-label-sticky-padding = ${module/bspwm.label-monocle-padding}
-
-label-private = 
-label-private-foreground = #bd2c40
-label-private-underline = ${module/bspwm.label-monocle-underline}
-label-private-padding = ${module/bspwm.label-monocle-padding}
-
-[module/bspwm-tmp]
-type = internal/bspwm
-format = <label-state>
-
-label-active = 
-label-active-padding = 1
-label-occupied = 
-label-occupied-padding = 1
-label-empty = 
-label-empty-padding = 1
-
-[module/cpu]
-type = internal/cpu
-interval = 0.5
-format = <label> <ramp-coreload>
-label = CPU
-
-ramp-coreload-0 = ▁
-ramp-coreload-0-font = 2
-ramp-coreload-0-foreground = #aaff77
-ramp-coreload-1 = ▂
-ramp-coreload-1-font = 2
-ramp-coreload-1-foreground = #aaff77
-ramp-coreload-2 = ▃
-ramp-coreload-2-font = 2
-ramp-coreload-2-foreground = #aaff77
-ramp-coreload-3 = ▄
-ramp-coreload-3-font = 2
-ramp-coreload-3-foreground = #aaff77
-ramp-coreload-4 = ▅
-ramp-coreload-4-font = 2
-ramp-coreload-4-foreground = #fba922
-ramp-coreload-5 = ▆
-ramp-coreload-5-font = 2
-ramp-coreload-5-foreground = #fba922
-ramp-coreload-6 = ▇
-ramp-coreload-6-font = 2
-ramp-coreload-6-foreground = #ff5555
-ramp-coreload-7 = █
-ramp-coreload-7-font = 2
-ramp-coreload-7-foreground = #ff5555
-
-[module/date]
-type = internal/date
-date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
-date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
-
-[module/memory]
-type = internal/memory
-format = <label> <bar-used>
-label = RAM
-
-bar-used-width = 30
-bar-used-foreground-0 = #aaff77
-bar-used-foreground-1 = #aaff77
-bar-used-foreground-2 = #fba922
-bar-used-foreground-3 = #ff5555
-bar-used-indicator = |
-bar-used-indicator-font = 6
-bar-used-indicator-foreground = #ff
-bar-used-fill = ─
-bar-used-fill-font = 6
-bar-used-empty = ─
-bar-used-empty-font = 6
-bar-used-empty-foreground = #444444
-
-[module/mpd]
-type = internal/mpd
-format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
-
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-prev = 
-icon-next = 
-icon-random = 
-icon-repeat = 
-
-toggle-on-foreground =
-toggle-off-foreground = #55
-
-bar-progress-width = 45
-bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
-bar-progress-indicator = |
-bar-progress-indicator-foreground = #ff
-bar-progress-indicator-font = 3
-bar-progress-fill = ─
-bar-progress-fill-foreground = #bb
-bar-progress-fill-font = 3
-bar-progress-empty = ─
-bar-progress-empty-font = 3
-bar-progress-empty-foreground = #44
+[module/network]
+	type          = internal/network
+	interface     = wlp3s0
+	ping-interval = 3
 
 [module/wireless-network]
-type = internal/network
-interface = wlp3s0
-interval = 3.0
-ping-interval = 10
+	type = internal/network
+	interface = wlp3s0
+	interval = 3.0
+	ping-interval = 10
 
-format-connected = <ramp-signal> <label-connected>
-label-connected = %essid%
-label-disconnected =    not connected
-label-disconnected-foreground = #66
+	format-connected = <ramp-signal> <label-connected>
+	label-connected = %essid%
+	label-disconnected =    not connected
+	label-disconnected-foreground = #66
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+	ramp-signal-0 = 
+	ramp-signal-1 = 
+	ramp-signal-2 = 
+	ramp-signal-3 = 
+	ramp-signal-4 = 
 
-animation-packetloss-0 = 
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1 = 
-animation-packetloss-1-foreground = ${bar/top.foreground}
-animation-packetloss-framerate = 500
+	animation-packetloss-0 = 
+	animation-packetloss-0-foreground = #ffa64c
+	animation-packetloss-1 = 
+	animation-packetloss-1-foreground = ${bar/top.foreground}
+	animation-packetloss-framerate = 500
 
 [module/wired-network]
-type = internal/network
-interface = enp12s0
-interval = 3.0
+	type = internal/network
+	interface = enp12s0
+	interval = 3.0
 
-label-connected =    %{T3}%local_ip%%{T-}
-label-disconnected-foreground = #66
+	label-connected =    %{T3}%local_ip%%{T-}
+	label-disconnected-foreground = #66
+[module/xwindow]
+	y-offset      = 10
+	type          = internal/xwindow
+	format        = <label>
+	label         = %title:0:50:%
+	label-padding = 3
+
+[module/date]
+	type     = internal/date
+	interval = 1.0
+	time     = "| %a %R %D |"
+	label    = "%time%"
+
+	format         = <label>
+	format-padding = 0
+
+	label-background = ${xrdb:color0}
+	label-foreground = ${xrdb:color7}
+	label-padding    = 1
+
+[module/previous]
+	type = custom/text
+
+	content = " "
+	content-background = ${xrdb:color0}
+	content-foreground = ${xrdb:color7}
+	content-padding = 0
+
+	click-left = mpc prev
+
+[module/playpause]
+	type = custom/script
+
+	exec = sh ~/.config/polybar/playpause.sh
+
+	interval= 1
+
+	label = %output%
+	label-background = ${xrdb:color0}
+	label-foreground = ${xrdb:color7}
+	label-padding = 1
+
+	click-left = mpc toggle
+
+[module/next]
+	type = custom/text
+
+	content = " "
+
+	content-background = ${xrdb:color0}
+	content-foreground = ${xrdb:color7}
+	content-padding = 0
+
+	click-left = mpc next
+
+[module/music]
+	type = internal/mpd
+
+	host = 127.0.0.1
+	port = 6600
+
+	interval = 2
+
+	format-online = <label-song>
+
+	label-song         = "%artist% - %title% "
+	label-song-padding = 0
+	label-song-background = ${xrdb:color0}
+	label-song-foreground = ${xrdb:color7}
+
+	format-online-prefix-padding = 0
+
+[module/battery]
+	type = internal/battery
+	full-at = 98
+
+	format-charging = <animation-charging> <label-charging>
+	format-discharging = <ramp-capacity> <label-discharging>
+	format-full = <ramp-capacity> <label-full>
+
+	ramp-capacity-0 = 
+	ramp-capacity-0-foreground = #f53c3c
+	ramp-capacity-1 = 
+	ramp-capacity-1-foreground = #ffa900
+	ramp-capacity-2 = 
+	ramp-capacity-3 = 
+	ramp-capacity-4 = 
+
+	bar-capacity-width = 10
+	bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
+	bar-capacity-fill = █
+	bar-capacity-fill-foreground = #ddffffff
+	bar-capacity-fill-font = 3
+	bar-capacity-empty = █
+	bar-capacity-empty-font = 3
+	bar-capacity-empty-foreground = #44ffffff
+
+	animation-charging-0 = 
+	animation-charging-1 = 
+	animation-charging-2 = 
+	animation-charging-3 = 
+	animation-charging-4 = 
+	animation-charging-framerate = 750
+
 
 [module/volume]
-type = internal/volume
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-headphone-id = 9
+	type          = internal/pulseaudio
+	format-volume = <label-volume>
 
-format-volume = <ramp-volume> <label-volume>
-label-muted =   muted
-label-muted-foreground = #66
+	mapped = true
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
+	label-volume            = "%percentage%%"
+	label-volume-background = ${xrdb:color0}
+	label-volume-foreground = ${xrdb:color7}
+	label-volume-padding    = 1
 
-[module/powermenu]
-type = custom/menu
+	format-muted = <label-muted>
 
-format-padding = 5
+	label-muted            = "0% (muted)"
+	label-muted-background = ${xrdb:color0}
+	label-muted-foreground = ${xrdb:color7}
+	label-muted-padding    = 1
 
-label-open = 
-label-close = 
+	format-volume-padding = 0
+	format-muted-padding  = 0
 
-menu-0-0 = Terminate WM
-menu-0-0-foreground = #fba922
-menu-0-0-exec = bspc quit -1
-menu-0-1 = Reboot
-menu-0-1-foreground = #fba922
-menu-0-1-exec = menu_open-1
-menu-0-2 = Power off
-menu-0-2-foreground = #fba922
-menu-0-2-exec = menu_open-2
+	ramp-headphones-0 = 
 
-menu-1-0 = Cancel
-menu-1-0-foreground = #fba922
-menu-1-0-exec = menu_open-0
-menu-1-1 = Reboot
-menu-1-1-foreground = #fba922
-menu-1-1-exec = sudo reboot
+[module/cpu]
+	type = internal/cpu
+	interval = 0.5
+	format = <label> <ramp-coreload>
+	label = CPU
+	ramp-coreload-0 = ▁
+	ramp-coreload-0-font = 2
+	ramp-coreload-0-foreground = #aaff77
+	ramp-coreload-1 = ▂
+	ramp-coreload-1-font = 2
+	ramp-coreload-1-foreground = #aaff77
+	ramp-coreload-2 = ▃
+	ramp-coreload-2-font = 2
+	ramp-coreload-2-foreground = #aaff77
+	ramp-coreload-3 = ▄
+	ramp-coreload-3-font = 2
+	ramp-coreload-3-foreground = #aaff77
+	ramp-coreload-4 = ▅
+	ramp-coreload-4-font = 2
+	ramp-coreload-4-foreground = #fba922
+	ramp-coreload-5 = ▆
+	ramp-coreload-5-font = 2
+	ramp-coreload-5-foreground = #fba922
+	ramp-coreload-6 = ▇
+	ramp-coreload-6-font = 2
+	ramp-coreload-6-foreground = #ff5555
+	ramp-coreload-7 = █
+	ramp-coreload-7-font = 2
+	ramp-coreload-7-foreground = #ff5555
 
-menu-2-0 = Power off
-menu-2-0-foreground = #fba922
-menu-2-0-exec = sudo poweroff
-menu-2-1 = Cancel
-menu-2-1-foreground = #fba922
-menu-2-1-exec = menu_open-0
+[module/ram]
+	type     = internal/memory
+	interval = 3
 
-[module/clock]
-type = internal/date
-interval = 2
-date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+	format           = <label>
+	label            = "%percentage_used%%"
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding    = 1
 
-; vim:ft=dosini
+	format-prefix = 
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.ram_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+
+[module/essid]
+	inherit = module/network
+
+	format-connected = <label-connected>
+
+	format-connected-prefix              = ""
+	format-connected-prefix-padding      = 1
+	format-connected-prefix-padding-left = 1
+	format-connected-prefix-background   = ${xrdb:color0}
+	format-connected-prefix-foreground   = ${xrdb:color5}
+
+	label-connected               = "%essid%"
+	label-connected-background    = ${xrdb:color0}
+	label-connected-foreground    = ${xrdb:color5}
+	label-connected-padding       = 1
+	label-connected-padding-right = 1
+
+	ramp-signal-background    = ${xrdb:color0}
+	ramp-signal-foreground    = ${xrdb:color5}
+	ramp-connected-foreground = ${xrdb:color5}
+	ramp-signal-padding       = 1
+
+	format-disconnected = <label-disconnected>
+
+	format-disconnected-prefix              = ""
+	format-disconnected-prefix-padding      = 1
+	format-disconnected-prefix-padding-left = 1
+	format-disconnected-prefix-background   = ${xrdb:color0}
+	format-disconnected-prefix-foreground   = ${xrdb:color7}
+
+	label-disconnected               = "DISCONNECTED"
+	label-disconnected-background    = ${xrdb:color0}
+	label-disconnected-foreground    = ${xrdb:color7}
+	label-disconnected-padding       = 1
+	label-disconnected-padding-right = 1
+
+
+[module/down]
+	inherit = module/network
+
+	format-connected = <label-connected>
+
+	format-connected-prefix            = 
+	format-connected-prefix-background = ${colors.down_p_bg}
+	format-connected-prefix-foreground = ${colors.modules_prefix_fg}
+	format-connected-prefix-padding    = 1
+
+	label-connected               = %{T2}%downspeed:7%%{T-}
+	label-connected-background    = ${colors.modules_bg}
+	label-connected-foreground    = ${colors.modules_fg}
+	label-connected-padding-right = 1
+
+[module/padding]
+	type               = custom/text
+	content            = |
+	content-foreground = ${colors.bg}
+	content-background = ${colors.bg}
+
+[module/paddinglite]
+	type               = custom/text
+	content            = ||
+	content-padding    = 30
+	content-foreground = #000f0f0f
+	content-background = #000f0f0f
+
+[module/workspaces]
+
+	type            = internal/bspwm
+	format          = <label-state> <label-mode>
+	index-sort      = true
+	wrapping-scroll = false
+	strip-wsnumbers = true
+
+	label-mode-background = ${xrdb:color0}
+	label-mode-foreground = ${xrdb:color7}
+	label-mode-padding    = 1
+
+	label-focused            = -
+	label-focused-background = ${xrdb:color0}
+	label-focused-foreground = ${xrdb:color2}
+	label-focused-padding    = 1
+
+	label-unfocused            = -
+	label-unfocused-background = ${xrdb:color0}
+	label-unfocused-foreground = ${xrdb:color7}
+	label-unfocused-padding    = 1
+
+	label-visible            = -
+	label-visible-background = ${xrdb:color0}
+	label-visible-foreground = ${xrdb:color7}
+	label-visible-padding    = 1
+
+	label-urgent            = •
+	label-urgent-background = ${xrdb:color7}
+	label-urgent-foreground = ${xrdb:color1}
+	label-urgent-padding    = 1
+
+	ws-icon-0 = term;
+	ws-icon-1 = web;
+	ws-icon-2 = code;
+	ws-icon-3 = music;
+	ws-icon-4 = irssi;
+	;ws-icon-default = 
+
+
+	pin-workspaces = true
+
+[module/mon2]
+
+	type            = internal/bspwm
+	format          = <label-state><label-mode>
+	index-sort      = true
+	wrapping-scroll = false
+	strip-wsnumbers = true
+
+	label-mode-background = #000f0f0f
+	label-mode-foreground = ${xrdb:color7}
+	label-mode-padding    = 1
+
+	label-focused            = %name%
+	label-focused-background = #000f0f0f
+	label-focused-foreground = ${xrdb:color2}
+	label-focused-padding    = 1
+
+	label-unfocused            = %name%
+	label-unfocused-background = #000f0f0f
+	label-unfocused-foreground = ${xrdb:color7}
+	label-unfocused-padding    = 1
+
+	label-visible            = %name%
+	label-visible-background = #000f0f0f
+	label-visible-foreground = ${xrdb:color7}
+	label-visible-padding    = 1
+
+	label-urgent            = •
+	label-urgent-background = ${xrdb:color7}
+	label-urgent-foreground = ${xrdb:color1}
+	label-urgent-padding    = 1
+
+	pin-workspaces = true
+
+
+[module/openbox]
+	type                      = internal/xworkspaces
+	pin-workspaces            = true
+	enable-click              = false
+	enable-scroll             = false
+	format                    = <label-state>
+	label-monitor             = %name%
+	label-active              = %icon%%name%
+	label-active-foreground   = ${colors.obfg}
+	label-active-background   = ${colors.obbg}
+	label-active-underline    = #fba922
+	label-active-padding      = 1
+	label-occupied            = %name%
+	label-occupied-background = ${colors.obbg}
+	label-occupied-padding    = 1
+	label-urgent              = %index%
+	label-urgent-foreground   = #000000
+	label-urgent-background   = #bd2c40
+	label-urgent-underline    = #9b0a20
+	label-empty               = %name%
+	label-empty-padding       = 1
+	label-empty-background    = ${colors.obibg}
+	label-empty-foreground    = ${colors.obifg}
+
+[module/backlight]
+	type = internal/backlight
+
+	output = LVDS-1
+
+	card          = acpi_video0
+	enable-scroll = false
+
+	format        = <label>
+	format-prefix = 
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.cpu_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+	label            = %percentage%%
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding    = 1

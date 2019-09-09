@@ -1,2 +1,2 @@
 #!/bin/sh
-/run/current-system/sw/bin/feh --bg-scale '/home/ray/pix/wall/Littner_Yoko_redhead_Tengen_Toppa_Gurren_Lagann_anime_anime_girls_red_background-1378913.jpg!d.png' 
+/nix/store/6fmkgd5dwxydnp8vfkldipnykvlgx349-feh-3.1.2/bin/feh --bg-fill '/home/ray/pix/wall/blurlook.jpg' 
